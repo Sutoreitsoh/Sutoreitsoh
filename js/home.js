@@ -1,15 +1,25 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // --- Random Background Video ---
+    // --- Random Background Video (using GitHub raw URLs) ---
     const videos = [
-        "img/beztebyabottomfarger.mp4",
-        "img/hvh.mp4",
-        "img/space.mp4"
+        "https://raw.githubusercontent.com/Sutoreitsoh/sutoreitso.xyz/main/img/beztebyabottomfarger.mp4",
+        "https://raw.githubusercontent.com/Sutoreitsoh/sutoreitso.xyz/main/img/hvh.mp4",
+        "https://raw.githubusercontent.com/Sutoreitsoh/sutoreitso.xyz/main/img/space.mp4"
     ];
     const randomVideo = videos[Math.floor(Math.random() * videos.length)];
     const videoElement = document.getElementById('background-video');
     if (videoElement) {
-        videoElement.querySelector('source').src = randomVideo;
+        const sourceElement = videoElement.querySelector('source');
+        if (sourceElement) {
+            sourceElement.src = randomVideo;
+        } else {
+            videoElement.src = randomVideo;
+        }
         videoElement.load();
+        console.log("🎬 Video selected:", randomVideo);
+
+        videoElement.addEventListener('error', function (e) {
+            console.error("❌ Video error:", e);
+        });
     }
 
     let title = "Sutoreitso";
