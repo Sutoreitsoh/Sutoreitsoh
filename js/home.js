@@ -117,9 +117,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     document.querySelector('.button').addEventListener('click', function () {
         const video = document.getElementById('background-video');
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-        // Audio enhancement works now (blob URLs are same-origin)
-        if (video && window.location.protocol !== 'file:') {
+        // Audio enhancement only on desktop (mobile uses direct URL, CORS blocks Web Audio)
+        if (video && window.location.protocol !== 'file:' && !isMobile) {
             try {
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
                 const audioCtx = new AudioContext();
