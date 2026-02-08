@@ -64,6 +64,11 @@ body.transition-to-video {
     /* Darkness effect */
 }
 
+#background-video.show.extra-dark {
+    filter: brightness(0.5);
+    /* Extra darkness for hvh.mp4 */
+}
+
 /* Global Grain / Noise Effect */
 body::after {
     content: "";

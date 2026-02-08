@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // --- Random Background Video (fetch as Blob to bypass CORS) ---
+    // --- Random Background Video ---
     const videos = [
         "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/beztebyabottomfarger.mp4",
         "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/hvh.mp4",
@@ -9,7 +9,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const videoElement = document.getElementById('background-video');
 
     if (videoElement) {
-        console.log("🎬 Loading video:", randomVideo);
+        // Apply extra darkness for hvh.mp4 (it's too bright)
+        if (randomVideo.includes('hvh.mp4')) {
+            videoElement.classList.add('extra-dark');
+        }
 
         // Fetch video as blob to make it same-origin (bypasses CORS for audio)
         fetch(randomVideo)
@@ -23,10 +26,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     videoElement.src = blobUrl;
                 }
                 videoElement.load();
-                console.log("✅ Video loaded as blob (audio enhancement will work)");
             })
             .catch(err => {
-                console.warn("⚠️ Blob fetch failed, using direct URL:", err);
                 // Fallback to direct URL
                 const sourceElement = videoElement.querySelector('source');
                 if (sourceElement) {
