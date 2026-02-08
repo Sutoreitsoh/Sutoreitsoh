@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const videos = [
         "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/beztebyabottomfarger.mp4",
         "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/hvh.mp4",
-        "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/space.mp4"
+        "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/space.mp4",
+        "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/beach.mp4",
+        "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/Vehemence.mp4"
     ];
 
     // Get current index from localStorage, rotate to next
