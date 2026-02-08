@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // --- Random Background Video (GitHub Media URLs) ---
+    // --- Random Background Video (fetch as Blob to bypass CORS) ---
     const videos = [
         "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/beztebyabottomfarger.mp4",
         "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/hvh.mp4",
@@ -7,15 +7,35 @@ document.addEventListener('DOMContentLoaded', (event) => {
     ];
     const randomVideo = videos[Math.floor(Math.random() * videos.length)];
     const videoElement = document.getElementById('background-video');
+
     if (videoElement) {
-        const sourceElement = videoElement.querySelector('source');
-        if (sourceElement) {
-            sourceElement.src = randomVideo;
-        } else {
-            videoElement.src = randomVideo;
-        }
-        videoElement.load();
-        console.log("🎬 Video selected:", randomVideo);
+        console.log("🎬 Loading video:", randomVideo);
+
+        // Fetch video as blob to make it same-origin (bypasses CORS for audio)
+        fetch(randomVideo)
+            .then(response => response.blob())
+            .then(blob => {
+                const blobUrl = URL.createObjectURL(blob);
+                const sourceElement = videoElement.querySelector('source');
+                if (sourceElement) {
+                    sourceElement.src = blobUrl;
+                } else {
+                    videoElement.src = blobUrl;
+                }
+                videoElement.load();
+                console.log("✅ Video loaded as blob (audio enhancement will work)");
+            })
+            .catch(err => {
+                console.warn("⚠️ Blob fetch failed, using direct URL:", err);
+                // Fallback to direct URL
+                const sourceElement = videoElement.querySelector('source');
+                if (sourceElement) {
+                    sourceElement.src = randomVideo;
+                } else {
+                    videoElement.src = randomVideo;
+                }
+                videoElement.load();
+            });
 
         videoElement.addEventListener('error', function (e) {
             console.error("❌ Video error:", e);
@@ -86,14 +106,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     document.querySelector('.button').addEventListener('click', function () {
         const video = document.getElementById('background-video');
-        const sourceEl = video ? video.querySelector('source') : null;
-        const videoSrc = sourceEl ? sourceEl.src : (video ? video.src : '');
 
-        // Skip audio enhancement for external videos (GitHub) - CORS blocks it
-        const isExternalVideo = videoSrc.includes('githubusercontent.com') || videoSrc.includes('github.com');
-
-        // Only apply audio enhancement for local files
-        if (video && window.location.protocol !== 'file:' && !isExternalVideo) {
+        // Audio enhancement works now (blob URLs are same-origin)
+        if (video && window.location.protocol !== 'file:') {
             try {
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
                 const audioCtx = new AudioContext();
