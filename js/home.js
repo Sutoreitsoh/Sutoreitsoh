@@ -87,7 +87,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelector('.button').addEventListener('click', function () {
         const video = document.getElementById('background-video');
 
-        if (video && window.location.protocol !== 'file:') {
+        // Check if video is from external source (GitHub) - skip audio enhancement due to CORS
+        const isExternalVideo = video && video.querySelector('source') &&
+            video.querySelector('source').src.includes('githubusercontent.com');
+
+        if (video && window.location.protocol !== 'file:' && !isExternalVideo) {
             try {
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
                 const audioCtx = new AudioContext();
