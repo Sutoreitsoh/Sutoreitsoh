@@ -1,15 +1,21 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // --- Random Background Video ---
+    // --- Sequential Background Video (rotates each refresh) ---
     const videos = [
         "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/beztebyabottomfarger.mp4",
         "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/hvh.mp4",
         "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/space.mp4"
     ];
-    const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+
+    // Get current index from localStorage, rotate to next
+    let videoIndex = parseInt(localStorage.getItem('videoIndex') || '0');
+    const currentVideo = videos[videoIndex];
+    // Save next index for next refresh
+    localStorage.setItem('videoIndex', String((videoIndex + 1) % videos.length));
+
     const videoElement = document.getElementById('background-video');
 
     if (videoElement) {
-        if (randomVideo.includes('hvh.mp4')) {
+        if (currentVideo.includes('hvh.mp4')) {
             videoElement.classList.add('extra-dark');
         }
 
@@ -23,17 +29,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         if (isMobile) {
             // Mobile: use direct URL
-            setVideoSrc(randomVideo);
+            setVideoSrc(currentVideo);
         } else {
             // Desktop: Fetch video as blob for audio enhancement
-            fetch(randomVideo)
+            fetch(currentVideo)
                 .then(response => response.blob())
                 .then(blob => {
                     const blobUrl = URL.createObjectURL(blob);
                     setVideoSrc(blobUrl);
                 })
                 .catch(() => {
-                    setVideoSrc(randomVideo);
+                    setVideoSrc(currentVideo);
                 });
         }
 
@@ -42,7 +48,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         videoElement.addEventListener('error', function () {
             if (retryCount < 2) {
                 retryCount++;
-                setTimeout(() => setVideoSrc(randomVideo), 1000);
+                setTimeout(() => setVideoSrc(currentVideo), 1000);
             }
         });
     }
