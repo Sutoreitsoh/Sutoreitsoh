@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // --- Random Background Video (using GitHub raw URLs) ---
+    // --- Random Background Video (GitHub Media URLs for LFS) ---
     const videos = [
-        "https://raw.githubusercontent.com/Sutoreitsoh/sutoreitso.xyz/main/img/beztebyabottomfarger.mp4",
-        "https://raw.githubusercontent.com/Sutoreitsoh/sutoreitso.xyz/main/img/hvh.mp4",
-        "https://raw.githubusercontent.com/Sutoreitsoh/sutoreitso.xyz/main/img/space.mp4"
+        "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/beztebyabottomfarger.mp4",
+        "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/hvh.mp4",
+        "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/space.mp4"
     ];
     const randomVideo = videos[Math.floor(Math.random() * videos.length)];
     const videoElement = document.getElementById('background-video');
