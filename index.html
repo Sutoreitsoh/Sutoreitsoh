@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>/</title>
     <script src="js/home.js" defer></script>
     <link rel="icon" type="image/png" href="img/atomic.png">
@@ -33,9 +34,9 @@
             </svg>
         </a>
     </div>
-    <video id="background-video" preload="auto"
-        style="display: none; position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%;" loop muted
-        autoplay>
+    <video id="background-video" preload="auto" playsinline
+        style="display: none; position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; object-fit: cover;"
+        loop muted autoplay>
         <source src="img/beztebyabottomfarger.mp4" type="video/mp4" draggable="false">
     </video>
     <button id="mute-button" class="mute-button" style="display: none;" draggable="false">

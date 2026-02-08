@@ -66,7 +66,7 @@ body.transition-to-video {
 
 #background-video.show.extra-dark {
     filter: brightness(0.5);
-    /* Extra darkness for hvh.mp4 */
+
 }
 
 /* Global Grain / Noise Effect */
@@ -381,5 +381,122 @@ body::before {
 
     100% {
         background-position-y: 4px;
+    }
+}
+
+/* ========== MOBILE RESPONSIVE ========== */
+@media screen and (max-width: 768px) {
+
+    /* Video fullscreen cover */
+    #background-video {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* Button - larger touch target */
+    .button {
+        font-size: 18px;
+        padding: 14px 35px;
+        min-width: 120px;
+        min-height: 50px;
+    }
+
+    /* Overlay adjustments */
+    .overlay {
+        top: 45%;
+        width: 90%;
+        padding: 10px;
+    }
+
+    .overlay:hover {
+        transform: translate(-50%, -50%) scale(1.0);
+        /* Disable hover zoom on mobile */
+    }
+
+    .overlay p {
+        font-size: 1.5em;
+    }
+
+    /* Profile picture */
+    .pfp {
+        width: 90px;
+        height: 90px;
+    }
+
+    .pfp-deco {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Small images (badges) */
+    .superp,
+    .superv {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Discord icon */
+    .overlay a svg {
+        width: 35px;
+        height: 35px;
+    }
+
+    /* Mute button */
+    .mute-button {
+        top: 15px;
+        right: 15px;
+    }
+
+    .mute-button img {
+        max-width: 35px;
+    }
+
+    /* Falling text - smaller on mobile */
+    .falling-text {
+        font-size: 10px;
+    }
+}
+
+/* Extra small screens */
+@media screen and (max-width: 480px) {
+    .button {
+        font-size: 16px;
+        padding: 12px 28px;
+    }
+
+    .overlay {
+        top: 40%;
+    }
+
+    .overlay p {
+        font-size: 1.2em;
+    }
+
+    .pfp {
+        width: 70px;
+        height: 70px;
+    }
+
+    .pfp-deco {
+        width: 95px;
+        height: 95px;
+    }
+
+    .superp,
+    .superv {
+        width: 16px;
+        height: 16px;
+    }
+
+    .overlay a svg {
+        width: 28px;
+        height: 28px;
     }
 }

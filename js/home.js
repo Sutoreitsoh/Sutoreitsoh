@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const videoElement = document.getElementById('background-video');
 
     if (videoElement) {
-        // Apply extra darkness for hvh.mp4 (it's too bright)
         if (randomVideo.includes('hvh.mp4')) {
             videoElement.classList.add('extra-dark');
         }
