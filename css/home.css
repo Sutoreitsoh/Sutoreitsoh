@@ -186,11 +186,6 @@ body::after {
     color: white;
     font-size: 2em;
     margin-bottom: 11px;
-    background-size: 100px 100px;
-    background-repeat: repeat;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .mute-button {
@@ -286,33 +281,12 @@ body::after {
     0%,
     100% {
         opacity: 1;
-        filter: blur(0px);
         text-shadow: 0 0 3px rgba(255, 255, 255, 0.6), 0 0 8px rgba(200, 220, 255, 0.4);
     }
 
-    5% {
-        opacity: 0.85;
-        filter: blur(0.3px);
-    }
-
-    10% {
-        opacity: 1;
-        filter: blur(0px);
-    }
-
     50% {
-        opacity: 0.95;
+        opacity: 0.9;
         text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 12px rgba(180, 200, 240, 0.5);
-    }
-
-    52% {
-        opacity: 0.7;
-        filter: blur(0.5px);
-    }
-
-    54% {
-        opacity: 1;
-        filter: blur(0px);
     }
 }
 

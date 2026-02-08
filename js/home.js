@@ -16,43 +16,34 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Detect mobile - skip blob fetch as it causes issues on mobile
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-        if (isMobile) {
-            // Mobile: use direct URL (no audio enhancement but video works)
-            const sourceElement = videoElement.querySelector('source');
-            if (sourceElement) {
-                sourceElement.src = randomVideo;
-            } else {
-                videoElement.src = randomVideo;
-            }
+        function setVideoSrc(url) {
+            videoElement.src = url;
             videoElement.load();
+        }
+
+        if (isMobile) {
+            // Mobile: use direct URL
+            setVideoSrc(randomVideo);
         } else {
             // Desktop: Fetch video as blob for audio enhancement
             fetch(randomVideo)
                 .then(response => response.blob())
                 .then(blob => {
                     const blobUrl = URL.createObjectURL(blob);
-                    const sourceElement = videoElement.querySelector('source');
-                    if (sourceElement) {
-                        sourceElement.src = blobUrl;
-                    } else {
-                        videoElement.src = blobUrl;
-                    }
-                    videoElement.load();
+                    setVideoSrc(blobUrl);
                 })
-                .catch(err => {
-                    // Fallback to direct URL
-                    const sourceElement = videoElement.querySelector('source');
-                    if (sourceElement) {
-                        sourceElement.src = randomVideo;
-                    } else {
-                        videoElement.src = randomVideo;
-                    }
-                    videoElement.load();
+                .catch(() => {
+                    setVideoSrc(randomVideo);
                 });
         }
 
-        videoElement.addEventListener('error', function (e) {
-            console.error("❌ Video error:", e);
+        // Retry on error (mobile sometimes fails first try)
+        let retryCount = 0;
+        videoElement.addEventListener('error', function () {
+            if (retryCount < 2) {
+                retryCount++;
+                setTimeout(() => setVideoSrc(randomVideo), 1000);
+            }
         });
     }
 
