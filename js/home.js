@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+    // --- Random Background Video ---
+    const videos = [
+        "img/beztebyabottomfarger.mp4",
+        "img/hvh.mp4",
+        "img/space.mp4"
+    ];
+    const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+    const videoElement = document.getElementById('background-video');
+    if (videoElement) {
+        videoElement.querySelector('source').src = randomVideo;
+        videoElement.load();
+    }
+
     let title = "Sutoreitso";
     let currentTitle = "";
     let direction = 1;
