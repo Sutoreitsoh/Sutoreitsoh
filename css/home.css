@@ -60,6 +60,8 @@ body.transition-to-video {
 
 #background-video.show {
     opacity: 1;
+    filter: brightness(0.7);
+    /* Darkness effect */
 }
 
 /* Global Grain / Noise Effect */

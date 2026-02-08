@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // --- Random Background Video (GitHub Media URLs for LFS) ---
+    // --- Random Background Video (local files for audio enhancement) ---
     const videos = [
-        "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/beztebyabottomfarger.mp4",
-        "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/hvh.mp4",
-        "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/space.mp4"
+        "img/beztebyabottomfarger.mp4",
+        "img/hvh.mp4",
+        "img/space.mp4"
     ];
     const randomVideo = videos[Math.floor(Math.random() * videos.length)];
     const videoElement = document.getElementById('background-video');
@@ -87,11 +87,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelector('.button').addEventListener('click', function () {
         const video = document.getElementById('background-video');
 
-        // Check if video is from external source (GitHub) - skip audio enhancement due to CORS
-        const isExternalVideo = video && video.querySelector('source') &&
-            video.querySelector('source').src.includes('githubusercontent.com');
-
-        if (video && window.location.protocol !== 'file:' && !isExternalVideo) {
+        // Audio enhancement for local videos
+        if (video && window.location.protocol !== 'file:') {
             try {
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
                 const audioCtx = new AudioContext();
