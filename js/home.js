@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     // --- Random Background Video ---
     const videos = [
-        "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/beztebyabottomfarger.mp4",
-        "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/hvh.mp4",
-        "https://media.githubusercontent.com/media/Sutoreitsoh/sutoreitso.xyz/main/img/space.mp4"
+        "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/beztebyabottomfarger.mp4",
+        "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/hvh.mp4",
+        "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/space.mp4"
     ];
     const randomVideo = videos[Math.floor(Math.random() * videos.length)];
     const videoElement = document.getElementById('background-video');

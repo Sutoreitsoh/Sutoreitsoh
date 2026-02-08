@@ -422,6 +422,8 @@ body::before {
 
     .overlay p {
         font-size: 1.5em;
+        background-size: 50px 50px !important;
+        /* Fix sparkle size on mobile */
     }
 
     /* Profile picture */
