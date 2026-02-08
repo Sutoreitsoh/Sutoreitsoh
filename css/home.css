@@ -186,6 +186,11 @@ body::after {
     color: white;
     font-size: 2em;
     margin-bottom: 11px;
+    background-size: 100px 100px;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .mute-button {
@@ -417,13 +422,11 @@ body::before {
 
     .overlay:hover {
         transform: translate(-50%, -50%) scale(1.0);
-        /* Disable hover zoom on mobile */
     }
 
     .overlay p {
         font-size: 1.5em;
         background-size: 50px 50px !important;
-        /* Fix sparkle size on mobile */
     }
 
     /* Profile picture */
