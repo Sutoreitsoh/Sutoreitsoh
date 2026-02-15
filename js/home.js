@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/beztebyabottomfarger.mp4",
         "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/hvh.mp4",
         "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/space.mp4",
-        "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/beach.mp4",
-        "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/Vehemence.mp4"
+        "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/radiohead.mp4",
+        "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/Vehemence.mp4",
+        "https://media.githubusercontent.com/media/Sutoreitsoh/Sutoreitsoh/main/img/space.mp4"
     ];
 
     // Get current index from localStorage, rotate to next
